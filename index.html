@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>MD Editor</h1>
+        <div class="header-buttons">
+            <button id="open-btn">Open File</button>
+            <button id="save-btn">Save File</button>
+            <button id="help-btn">Help</button>
+        </div>
+    </header>
+    
+    <main>
+        <div class="editor-panel">
+            <textarea id="editor" placeholder="Enter your Markdown here..."></textarea>
+        </div>
+        <div class="preview-panel">
+            <div id="preview"></div>
+        </div>
+    </main>
+
+    <input type="file" id="file-input" accept=".md,.txt" style="display: none;">
+    <a id="download-link" style="display: none;"></a>
+
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Markdown Writing Guide</h2>
+            <ul>
+                <li><strong>Headings:</strong> Use # for headings. # Heading 1, ## Heading 2, etc.<br><em>Example:</em> <code># My Heading</code></li>
+                <li><strong>Paragraphs:</strong> Separate paragraphs with blank lines.<br><em>Example:</em> First paragraph.<br><br>Second paragraph.</li>
+                <li><strong>Text Formatting:</strong>
+                    <ul>
+                        <li>*Italic* or _Italic_<br><em>Example:</em> <code>*italic text*</code></li>
+                        <li>**Bold** or __Bold__<br><em>Example:</em> <code>**bold text**</code></li>
+                        <li>~~Strikethrough~~<br><em>Example:</em> <code>~~strikethrough text~~</code></li>
+                    </ul>
+                </li>
+                <li><strong>Lists:</strong>
+                    <ul>
+                        <li>Unordered: - Item or * Item<br><em>Example:</em> <code>- Item 1</code></li>
+                        <li>Ordered: 1. Item<br><em>Example:</em> <code>1. First item</code></li>
+                        <li>Nested lists with indentation<br><em>Example:</em> <code>- Item 1<br>&nbsp;&nbsp;- Subitem</code></li>
+                    </ul>
+                </li>
+                <li><strong>Links:</strong> [Link Text](URL)<br><em>Example:</em> <code>[Google](https://google.com)</code></li>
+                <li><strong>Images:</strong> ![Alt Text](Image URL)<br><em>Example:</em> <code>![Alt text](image.jpg)</code></li>
+                <li><strong>Code:</strong>
+                    <ul>
+                        <li>Inline: `code`<br><em>Example:</em> <code>`console.log('hello')`</code></li>
+                        <li>Blocks: ```language<br>code<br>```<br><em>Example:</em> <code>```javascript<br>console.log('hello');<br>```</code></li>
+                    </ul>
+                </li>
+                <li><strong>Blockquotes:</strong> > Quote text<br><em>Example:</em> <code>> This is a quote</code></li>
+                <li><strong>Horizontal Rules:</strong> --- or ***<br><em>Example:</em> <code>---</code></li>
+                <li><strong>Tables:</strong> | Header1 | Header2 |<br>|---------|---------|<br>| Cell1   | Cell2   |<br><em>Example:</em> <code>| Name | Age |<br>|------|-----|<br>| John | 30 |</code></li>
+                <li><strong>Escaping:</strong> Use \ to escape special characters like \* or \[<br><em>Example:</em> <code>\*not italic\*</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

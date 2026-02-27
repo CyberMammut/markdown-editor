@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Merriweather:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #121212;
+    --bg-tertiary: #1a1a1a;
+    --border-color: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #9e9e9e;
+    --accent-primary: #9b59b6;
+    --accent-secondary: #8e44ad;
+    --accent-light: #bb6bd9;
+    --accent-success: #27ae60;
+    --accent-warning: #f39c12;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --transition: 0.2s ease;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+header h1::before {
+    content: '◆ ';
+    color: var(--accent-primary);
+}
+
+.header-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+button:hover {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#open-btn::before {
+    content: '📂';
+}
+
+#save-btn::before {
+    content: '💾';
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Editor Panel */
+.editor-panel {
+    width: 50%;
+    background-color: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+}
+
+#editor {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    tab-size: 4;
+}
+
+#editor::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+#editor::-webkit-scrollbar,
+#preview::-webkit-scrollbar {
+    width: 8px;
+}
+
+#editor::-webkit-scrollbar-track,
+#preview::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+#editor::-webkit-scrollbar-thumb,
+#preview::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+#editor::-webkit-scrollbar-thumb:hover,
+#preview::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Preview Panel */
+.preview-panel {
+    width: 50%;
+    background-color: var(--bg-secondary);
+    overflow-y: auto;
+}
+
+#preview {
+    padding: 24px;
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+/* Markdown Preview Styling */
+#preview h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+#preview h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+#preview h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+#preview h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+#preview h5, #preview h6 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+#preview p {
+    margin-bottom: 16px;
+}
+
+#preview a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition);
+}
+
+#preview a:hover {
+    border-bottom-color: var(--accent-primary);
+}
+
+#preview strong {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+#preview em {
+    font-style: italic;
+}
+
+#preview code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 13px;
+    background-color: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #f97583;
+}
+
+#preview pre {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 16px;
+    margin: 16px 0;
+    overflow-x: auto;
+}
+
+#preview pre code {
+    background: none;
+    padding: 0;
+    color: var(--text-primary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#preview blockquote {
+    border-left: 4px solid var(--accent-primary);
+    padding-left: 16px;
+    margin: 16px 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+#preview ul, #preview ol {
+    margin: 16px 0;
+    padding-left: 24px;
+}
+
+#preview li {
+    margin-bottom: 8px;
+}
+
+#preview ul li::marker {
+    color: var(--accent-primary);
+}
+
+#preview ol li::marker {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+#preview hr {
+    border: none;
+    height: 2px;
+    background-color: var(--border-color);
+    margin: 24px 0;
+}
+
+#preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 16px 0;
+}
+
+#preview table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+#preview th, #preview td {
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    text-align: left;
+}
+
+#preview th {
+    background-color: var(--bg-tertiary);
+    font-weight: 600;
+}
+
+#preview tr:nth-child(even) {
+    background-color: rgba(33, 38, 45, 0.5);
+}
+
+/* Empty State */
+#preview:empty::before {
+    content: 'Preview will appear here...';
+    color: var(--text-secondary);
+    opacity: 0.5;
+    font-style: italic;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    header {
+        padding: 12px 16px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    button span {
+        display: none;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .editor-panel, .preview-panel {
+        width: 100%;
+        height: 50%;
+    }
+
+    .editor-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    #preview {
+        padding: 16px;
+        font-size: 15px;
+    }
+
+    #editor {
+        padding: 16px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#preview > * {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Selection */
+::selection {
+    background-color: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
+#editor::selection {
+    background-color: rgba(88, 166, 255, 0.3);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    margin: 5% auto;
+    padding: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content h2 {
+    color: var(--accent-primary);
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.modal-content > p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-content li {
+    margin-bottom: 16px;
+    padding: 12px;
+    background-color: var(--bg-tertiary);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-primary);
+}
+
+.modal-content li strong {
+    color: var(--accent-light);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.modal-content li ul {
+    margin-top: 8px;
+    margin-left: 16px;
+}
+
+.modal-content li li {
+    margin-bottom: 6px;
+    padding: 6px;
+    background-color: transparent;
+    border-left: none;
+    border-radius: 0;
+}
+
+.modal-content code {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--bg-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #f97583;
+    font-size: 13px;
+}
+
+.modal-content pre {
+    background-color: var(--bg-primary);
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+    overflow-x: auto;
+}
+
+.modal-content pre code {
+    display: block;
+    line-height: 1.5;
+}
+
+/* Close Button */
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--transition);
+    line-height: 1;
+}
+
+.close:hover {
+    color: var(--accent-primary);
+}
+
+/* Help Button */
+#help-btn::before {
+    content: '❓';
+}
+
+/* Modal list items with inline examples */
+.modal-content li em {
+    color: var(--accent-light);
+    font-style: normal;
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+.modal-content li code {
+    display: inline-block;
+    margin-top: 2px;
+}
