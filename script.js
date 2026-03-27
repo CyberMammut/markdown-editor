@@ -82,13 +82,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Save file button click
     saveBtn.addEventListener('click', function() {
         const content = editor.value;
-        const blob = new Blob([content], { type: 'text/markdown' });
         
+        // DEBUG: Show current state
+        console.log('Current filename before save:', currentFilename);
+        console.log('Content preview:', content.substring(0, 50));
+        
+        // If new file (not loaded), use first # Title as filename
+        if (currentFilename === 'document.md' && content.trim()) {
+            console.log('Condition met - extracting title...');
+            const titleMatch = content.match(/^# +(.+)$/m);
+            if (titleMatch) {
+                let title = titleMatch[1].trim();
+                let sanitized = title.replace(/[<>:"/\\\\|?*]/g, '-');
+                sanitized = sanitized.replace(/\\s+/g, ' ').trim().substring(0, 100);
+                console.log('Title match:', title, 'Sanitized:', sanitized);
+                if (sanitized.length > 0) {
+                    currentFilename = sanitized + '.md';
+                    console.log('New filename:', currentFilename);
+                } else {
+                    currentFilename = 'untitled.md';
+                    console.log('Sanitized empty, using untitled.md');
+                }
+            } else {
+                console.log('No title match');
+                currentFilename = 'untitled.md';
+            }
+        } else {
+            console.log('Condition NOT met (already named or no content)');
+        }
+        
+        document.title = currentFilename + ' - MD Editor';
+        
+        const blob = new Blob([content], { type: 'text/markdown' });
         downloadLink.href = URL.createObjectURL(blob);
         downloadLink.download = currentFilename;
         downloadLink.click();
-        
         URL.revokeObjectURL(downloadLink.href);
+        
+        // DEBUG: Final filename
+        console.log('Final download filename:', currentFilename);
     });
 
     // Keyboard shortcuts
