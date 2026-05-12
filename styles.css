@@ -538,8 +538,3 @@ main {
     margin-top: 4px;
     font-size: 13px;
 }
-
-.modal-content li code {
-    display: inline-block;
-    margin-top: 2px;
-}

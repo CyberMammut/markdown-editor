@@ -373,14 +373,15 @@ setTimeout(()=>{ try{ window.focus(); window.print(); }catch(e){} }, 50);
 </body>
 </html>`;
 
-        const win = window.open('', '_blank');
+        const blob = new Blob([printDoc], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+
+        const win = window.open(url, '_blank');
+
         if (!win) {
             alert('Popup blocked. Please allow popups to save PDF.');
             return;
         }
-        win.document.open();
-        win.document.write(printDoc);
-        win.document.close();
     }
 
     if (savePdfBtn) {
